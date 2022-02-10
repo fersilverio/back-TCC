@@ -83,9 +83,10 @@ join_tree.set_observation(ev5)
 join_tree.set_observation(ev6)
 join_tree.set_observation(ev7)
 
+arq = open('saida.txt','w')
 
 for node in join_tree.get_bbn_nodes():
     potential = join_tree.get_bbn_potential(node)
-    print(node)
-    print(potential)
-    print('--------------------->')
+    arq.write(str(node) + '\n')
+    arq.write(str(potential) + '\n')
+    arq.write('--------------------->\n')
