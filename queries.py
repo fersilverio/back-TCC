@@ -2,10 +2,13 @@ from variaveis import *
 
 def teste():
     lista_queries = []
-    lista_queries.append(VERDADEIRO_ABAIXO_IDEAL + ' and ' + VERDADEIRO_FUMA_JA_FUMOU + ' and ' + FALSO_GENERO_MASC + ' and ' + VERDADEIRO_HIPERTENSAO +' and ' + FALSO_DOENCA_CARD + ' and ' + VERDADEIRO_HIPOGLICEMIA_NORMAL + ' and ' + FALSO_JOVENS_ADULTOS + ' and ' + VERDADEIRO_AVC)
-    lista_queries.append(VERDADEIRO_ABAIXO_IDEAL + ' and ' + VERDADEIRO_FUMA_JA_FUMOU + ' and ' + FALSO_GENERO_MASC + ' and ' + VERDADEIRO_HIPERTENSAO +' and ' + FALSO_DOENCA_CARD + ' and ' + VERDADEIRO_HIPOGLICEMIA_NORMAL + ' and ' + FALSO_JOVENS_ADULTOS)
-    # lista_queries.append(FALSO_GENERO_MASC + '  and  ' + VERDADEIRO_AVC)
-    # lista_queries.append(FALSO_GENERO_MASC +)
+    lista_queries.append(FALSO_ABAIXO_IDEAL + ' and ' + VERDADEIRO_FUMA_JA_FUMOU + ' and ' + FALSO_GENERO_MASC + ' and ' + VERDADEIRO_HIPERTENSAO +' and ' + VERDADEIRO_DOENCA_CARD + ' and ' + FALSO_HIPOGLICEMIA_NORMAL + ' and ' + FALSO_JOVENS_ADULTOS + ' and ' + VERDADEIRO_AVC)
+    lista_queries.append(FALSO_ABAIXO_IDEAL + ' and ' + VERDADEIRO_FUMA_JA_FUMOU + ' and ' + FALSO_GENERO_MASC + ' and ' + VERDADEIRO_HIPERTENSAO +' and ' + VERDADEIRO_DOENCA_CARD + ' and ' + FALSO_HIPOGLICEMIA_NORMAL + ' and ' + FALSO_JOVENS_ADULTOS)
+    
+    # lista_queries.append(VERDADEIRO_ABAIXO_IDEAL + ' and ' + VERDADEIRO_FUMA_JA_FUMOU + ' and ' + VERDADEIRO_GENERO_MASC + ' and ' + VERDADEIRO_HIPERTENSAO +' and ' + VERDADEIRO_DOENCA_CARD + ' and ' + VERDADEIRO_HIPOGLICEMIA_NORMAL + ' and ' + VERDADEIRO_JOVENS_ADULTOS + ' and ' + VERDADEIRO_AVC)
+    # lista_queries.append(VERDADEIRO_ABAIXO_IDEAL + ' and ' + VERDADEIRO_FUMA_JA_FUMOU + ' and ' + VERDADEIRO_GENERO_MASC + ' and ' + VERDADEIRO_HIPERTENSAO +' and ' + VERDADEIRO_DOENCA_CARD + ' and ' + VERDADEIRO_HIPOGLICEMIA_NORMAL + ' and ' + VERDADEIRO_JOVENS_ADULTOS)
+    
+    
     return lista_queries
 
 def enviar_lista_queries():

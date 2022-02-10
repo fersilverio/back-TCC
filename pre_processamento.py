@@ -8,6 +8,7 @@ def get_total_records_of_dataset(dataset):
     total_dataset = pd.read_csv(dataset)
     total_dataset.query('stroke == 1 or stroke == 0', inplace = True)
     return len(total_dataset)
+
 # Simplesmente retorna o numero de avcs no dataset
 def get_number_of_avcs(dataset):
     num_avc = pd.read_csv(dataset)
@@ -52,17 +53,7 @@ def get_numeros_dataset(dataset):
 
     ################# DADOS COM RELAÇÃO A IMC ###########################################
     
-    # #Abaixo do peso ou ideal Masc.
-    # abaixo_masc = pd.read_csv(dataset)
-    # abaixo_masc.query('(bmi < 20.7 and gender == "Male")', inplace = True)
-    # num_abaixo_masc = len(abaixo_masc)
-    # ideal_masc = pd.read_csv(dataset)
-    # ideal_masc.query('(bmi >= 20.7 and bmi <= 26.4 and gender == "Male")', inplace = True)
-    # num_ideal_masc = len(ideal_masc)
-    # num_abaixo_ideal_masc = num_abaixo_masc + num_ideal_masc
-    # dados.append(num_abaixo_ideal_masc)
-
-    #Abaixo do peso ou ideal Masc.
+    #Abaixo do peso ou ideal
     abaixo = pd.read_csv(dataset)
     abaixo.query('(bmi < 19.9)', inplace = True)
     num_abaixo = len(abaixo)
@@ -73,24 +64,9 @@ def get_numeros_dataset(dataset):
     dados.append(num_abaixo_ideal)
 
 
-
-
-
-
-    # #Abaixo do peso ou Peso ideal Fem.
-    # abaixo_fem = pd.read_csv(dataset)
-    # abaixo_fem.query('(bmi < 19.1 and gender == "Female")', inplace = True)
-    # num_abaixo_fem = len(abaixo_fem)
-    # ideal_fem = pd.read_csv(dataset)
-    # ideal_fem.query('(bmi >= 19.1 and bmi <= 25.8 and gender == "Female")', inplace = True)
-    # num_ideal_fem = len(ideal_fem)
-    # num_abaixo_ideal_fem = num_abaixo_fem + num_ideal_fem
-    # dados.append(num_abaixo_ideal_fem)
-
     ################# DADOS COM RELAÇÃO A GLICOSE ###########################################
 
     #Hipoglicemia e Glicemia normal
-    
     glicemia_normal = pd.read_csv(dataset)
     glicemia_normal.query('(avg_glucose_level < 99)', inplace = True)
     num_glicemia_normal = len(glicemia_normal)
@@ -124,22 +100,12 @@ def get_match_from_query(query,dataset):
 
 
 #Realiza as queries considerando os casos de AVC, vai contar todas as queries da tabela-verdade
-def get_numeros_dataset_avc(dataset):
+def gerar_probs_node_avc(dataset):
     dados = []
-    a = teste()
-    v1,v2 = get_match_from_query(a[0],dataset),get_match_from_query(a[1],dataset)
-    b = []
-    b.append(v1)
-    b.append(v2)
-    print('KKKASKA')
-    pprint(b)
     queries_avc_true = enviar_lista_queries()
     queries_avc_false = enviar_queries_avc_falso()
-    
     for i in range(0,len(queries_avc_true)):
         valor_cenario_true, valor_cenario_false = get_match_from_query(queries_avc_true[i],dataset), get_match_from_query(queries_avc_false[i],dataset)
-        #print('ssdfjsdfsssssss')
-        #print(valor_cenario_false)
         try:
             valor_final_1 = valor_cenario_true / valor_cenario_false
         except ZeroDivisionError:
@@ -147,21 +113,8 @@ def get_numeros_dataset_avc(dataset):
         valor_final_2 = 1 - valor_final_1
         dados.append(round(valor_final_1,2))
         dados.append(round(valor_final_2,2)) 
-    print('SHDUASHDUASDHUASH')
-    a = open('a.txt','w')
-    a.write(str(dados))
     return dados
 
-# def gerar_probs_node_avc(dataset):
-#     dados = get_numeros_dataset_avc(dataset)
-#     prob_iniciais = []
-#     num_avcs = get_number_of_avcs(dataset)
-#     for i in dados:
-#         porcentagem,contraparte = calcular_porcentagem(i,num_avcs)
-#         prob_iniciais.append(porcentagem)
-#         prob_iniciais.append(contraparte)
-
-#     return prob_iniciais
 
 # Realiza os calculos para gerar a porcentagem que será usada no nós da rede bayesiana
 def calcular_porcentagem(entrada, tamanho):
@@ -171,15 +124,7 @@ def calcular_porcentagem(entrada, tamanho):
     contraparte = round(aux2,2)
     return porcentagem, contraparte
 
-#para diferenciar imc masculino e feminino, a ideia é quando for masculino retirar o valor do feminino no total do dataset e vice-versa
-# as entradas são num_abaixo_ideal_masc e num_abaixo_ideal_fem ou vice-versa
-# o retorno será porcentagem de num_abaixo_ideal_masc (ou feminino) e sua contraparte
-# def calcular_porcentagem_imc(entrada1,entrada2,tamanho):
-#     aux = (entrada1 * 100) / (tamanho - entrada2)
-#     porcentagem = round(aux/100,2)
-#     aux2 = 1 - porcentagem
-#     contraparte = round(aux2,2)
-#     return porcentagem, contraparte
+
 
 def gerar_probs_nos_perifericos(dataset):
     
