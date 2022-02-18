@@ -5,10 +5,6 @@ def teste():
     lista_queries.append(FALSO_ABAIXO_IDEAL + ' and ' + VERDADEIRO_FUMA_JA_FUMOU + ' and ' + FALSO_GENERO_MASC + ' and ' + VERDADEIRO_HIPERTENSAO +' and ' + VERDADEIRO_DOENCA_CARD + ' and ' + FALSO_HIPOGLICEMIA_NORMAL + ' and ' + FALSO_JOVENS_ADULTOS + ' and ' + VERDADEIRO_AVC)
     lista_queries.append(FALSO_ABAIXO_IDEAL + ' and ' + VERDADEIRO_FUMA_JA_FUMOU + ' and ' + FALSO_GENERO_MASC + ' and ' + VERDADEIRO_HIPERTENSAO +' and ' + VERDADEIRO_DOENCA_CARD + ' and ' + FALSO_HIPOGLICEMIA_NORMAL + ' and ' + FALSO_JOVENS_ADULTOS)
     
-    # lista_queries.append(VERDADEIRO_ABAIXO_IDEAL + ' and ' + VERDADEIRO_FUMA_JA_FUMOU + ' and ' + VERDADEIRO_GENERO_MASC + ' and ' + VERDADEIRO_HIPERTENSAO +' and ' + VERDADEIRO_DOENCA_CARD + ' and ' + VERDADEIRO_HIPOGLICEMIA_NORMAL + ' and ' + VERDADEIRO_JOVENS_ADULTOS + ' and ' + VERDADEIRO_AVC)
-    # lista_queries.append(VERDADEIRO_ABAIXO_IDEAL + ' and ' + VERDADEIRO_FUMA_JA_FUMOU + ' and ' + VERDADEIRO_GENERO_MASC + ' and ' + VERDADEIRO_HIPERTENSAO +' and ' + VERDADEIRO_DOENCA_CARD + ' and ' + VERDADEIRO_HIPOGLICEMIA_NORMAL + ' and ' + VERDADEIRO_JOVENS_ADULTOS)
-    
-    
     return lista_queries
 
 def enviar_lista_queries():
@@ -147,7 +143,7 @@ def enviar_lista_queries():
 
 
 
-# Queries com stroke falso
+# Queries com stroke desconsiderado
 
 def enviar_queries_avc_falso():
     lista_queries = []

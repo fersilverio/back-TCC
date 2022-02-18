@@ -6,7 +6,7 @@ from pybbn.graph.variable import Variable
 from pybbn.pptc.inferencecontroller import InferenceController
 from pre_processamento import gerar_probs_node_avc, gerar_probs_nos_perifericos
 
-def rede_bayesiana():
+def rede_bayesiana(string_entrada):
         probs_nos_perifericos = gerar_probs_nos_perifericos('datasets/stroke.csv')
         probs_no_avc = gerar_probs_node_avc('datasets/stroke.csv')
 
@@ -38,40 +38,43 @@ def rede_bayesiana():
 
         join_tree = InferenceController.apply(bbn)
 
+        # quebra da string será realizada aqui
+        evidences = list(string_entrada)
+
 
         ev1 = EvidenceBuilder() \
                 .with_node(join_tree.get_bbn_node_by_name('genero-masc')) \
-                .with_evidence('1',1.0) \
+                .with_evidence(evidences[0],1.0) \
                 .build()
 
         ev2 = EvidenceBuilder() \
                 .with_node(join_tree.get_bbn_node_by_name('doenca')) \
-                .with_evidence('0',1.0) \
+                .with_evidence(evidences[1],1.0) \
                 .build()
 
         ev3 = EvidenceBuilder() \
                 .with_node(join_tree.get_bbn_node_by_name('fuma-ja-fumou')) \
-                .with_evidence('1',1.0) \
+                .with_evidence(evidences[2],1.0) \
                 .build()
 
         ev4 = EvidenceBuilder() \
                 .with_node(join_tree.get_bbn_node_by_name('peso-abaixo-ideal')) \
-                .with_evidence('0',1.0) \
+                .with_evidence(evidences[3],1.0) \
                 .build()
 
         ev5 = EvidenceBuilder() \
                 .with_node(join_tree.get_bbn_node_by_name('hipoglicemia-normal')) \
-                .with_evidence('1',1.0) \
+                .with_evidence(evidences[4],1.0) \
                 .build()
 
         ev6 = EvidenceBuilder() \
                 .with_node(join_tree.get_bbn_node_by_name('jovem-adulto')) \
-                .with_evidence('0',1.0) \
+                .with_evidence(evidences[5],1.0) \
                 .build()
 
         ev7 = EvidenceBuilder() \
                 .with_node(join_tree.get_bbn_node_by_name('hipertensao')) \
-                .with_evidence('1',1.0) \
+                .with_evidence(evidences[6],1.0) \
                 .build()
 
 
@@ -84,40 +87,27 @@ def rede_bayesiana():
         join_tree.set_observation(ev7)
 
         arq = open('saida.txt','w')
-        #rust = open('teste.txt','w')
 
         for node in join_tree.get_bbn_nodes():
                 potential = join_tree.get_bbn_potential(node)
-                #arq.write(str(node) + '\n')
                 arq.write('\n')
                 arq.write(str(potential))
-                #arq.write(str(potential) + '\n')
-                #arq.write('--------------------->\n')
 
 
 
 
-def get_prediction():
-        rede_bayesiana()
+def get_prediction(string_entrada):
+        rede_bayesiana(string_entrada)
         arq = open('saida.txt', 'r')
         linhas = arq.readlines()
         tokens = list(linhas)
-
-        print(tokens[15])
         tokens2 = list(tokens[15])
-        print(tokens2)
-
-        print(len(tokens2))
         caracteres_escolhidos = []
         
         for i in range(4,10):
                 caracteres_escolhidos.append(tokens2[i])
         
         porcentagem_string = ''.join(caracteres_escolhidos)
-        
         porc = float(porcentagem_string)
 
         return porc
-        
-
-get_prediction()
