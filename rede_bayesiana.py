@@ -39,7 +39,7 @@ def rede_bayesiana(string_entrada):
         join_tree = InferenceController.apply(bbn)
 
         # quebra da string será realizada aqui
-        evidences = list(string_entrada)
+        evidences = list(str(string_entrada))
 
 
         ev1 = EvidenceBuilder() \
