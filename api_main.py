@@ -14,6 +14,11 @@ def func():
     prob_final = get_prediction(string_entrada)
     return jsonify({'probabilidade': prob_final})
 
+@app.route('/teste')
+@cross_origin()
+def teste():
+    return jsonify({'resp' : 'teste'})
+
 
 if __name__ == '__main__':
     app.run(debug=True)
