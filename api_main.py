@@ -10,9 +10,10 @@ CORS(app)
 @app.route('/', methods=['POST'])
 @cross_origin()
 def func():
-    string_entrada = request.get_json()
+    req = request.get_json()
+    req_tratada = req['entrada']
+    string_entrada = req_tratada
     prob_final = get_prediction(string_entrada)
-    print(prob_final)
     return jsonify({'probabilidade': prob_final})
 
 if __name__ == '__main__':
