@@ -11,9 +11,10 @@ CORS(app)
 @cross_origin()
 def func():
     req = request.get_json()
-    req_tratada = req['entrada']
-    string_entrada = req_tratada
-    prob_final = get_prediction(string_entrada)
+    #req_tratada = req['entrada']
+    #string_entrada = req_tratada
+    #prob_final = get_prediction(string_entrada)
+    prob_final = get_prediction(req)
     return jsonify({'probabilidade': prob_final})
 
 if __name__ == '__main__':
